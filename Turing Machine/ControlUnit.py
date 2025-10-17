@@ -7,22 +7,22 @@ class Cell:
 class Head:
     def __init__(self):
         self.pointer = Cell(None)
-    
-    def halt(self):
+
+    def printTape(self):
         current = self.pointer
 
-        final_tape = []
+        tape = []
 
         while current.Previous != None:
             current = current.Previous
         
         while current.Next != None:
-            final_tape.append(current.Symbol)
+            tape.append(current.Symbol)
             current = current.Next
-        final_tape.append(current.Symbol)
+        tape.append(current.Symbol)
         
-        print(final_tape)
-
+        print(tape)
+    
     def read(self):
         print(self.pointer.Symbol)
         return self.pointer.Symbol
