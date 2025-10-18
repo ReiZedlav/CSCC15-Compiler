@@ -1,6 +1,5 @@
 import ControlUnit
-from Compiler import ErrorHandler
-from Compiler import FrontEnd
+from Compiler import FrontEnd,ErrorHandler
 
 
 class Console:
@@ -16,7 +15,8 @@ class Console:
     def compile(self,turingFile):
         
         #still not done
-        Tokens = FrontEnd.Analyze(turingFile)
+        Tokens = FrontEnd.Lexer.Tokenizer(turingFile)
+        
         
 
 

@@ -10,4 +10,13 @@ class Errors:
     @staticmethod
     def invalidCommand():
         print("Error 1: Command Invalid!")
+    
+    @staticmethod
+    def unknownStatement(message,code,line):
+        print(f"{message}: {" ".join(code)} at line {line}")
 
+class StackTrace:
+    pass    
+        
+        
+    
