@@ -72,14 +72,14 @@ class Lexer:
                     verify = Lexer.verifyToken(i.split(),line) 
                     
                     if verify == False:
-                        return
+                        return False
 
                     RawTokens.append(i.strip().split())
         
         LabelCheck = Lexer.duplicateChecker(RawTokens)
 
         if LabelCheck == False:
-            return
+            return False
         
         ProcessedTokens = []
 
@@ -98,7 +98,56 @@ class Lexer:
         #invoke compressed tokens with .getName() and .getType()
         
         return ProcessedTokens
+
+class Syntax:
     
+    @staticmethod
+    def Analyze(Tokens):
+        
+        for packaged in Tokens:
+            if len(packaged) == 1:
+                if packaged[0].getType() not in ["LABEL","KEYWORD"]:
+                    ErrorHandler.Errors.syntaxException("".join(packaged[0].getName()))
+                    return False
+
+            if len(packaged) == 2:
+                if packaged[0].getType() != "KEYWORD":
+                    ErrorHandler.Errors.syntaxException("".join(packaged[0].getName()))
+                    return False
+                
+                if packaged[1].getType() not in ["SYMBOL","CALLEE"]:
+                    ErrorHandler.Errors.syntaxException("".join(packaged[1].getName()))
+                    return False
+                
+            if len(packaged) == 4:
+                if packaged[3].getType() != "CALLEE":
+                    ErrorHandler.Errors.syntaxException(packaged[0].getName() + " " + packaged[1].getName() + " " + packaged[2].getName() + " " + packaged[3].getName())
+                    return False
+        return True
+
+class Semantic:
+
+    @staticmethod
+    def Analyze(Tokens):
+        for packaged in Tokens:
+            if len(packaged) == 1:
+                if packaged[0].getName() in ["GOTO","IF","WRITE"]:
+                    ErrorHandler.Errors.improperUsage(packaged[0].getName())
+                    return False
+
+            if len(packaged) == 2:
+                if packaged[1].getType() == "SYMBOL":
+                   if (packaged[0].getName() != "WRITE"):
+                        ErrorHandler.Errors.improperUsage(packaged[0].getName())
+                        return False
+                
+                elif packaged[1].getType() == "CALLEE":
+                    if (packaged[0].getName() != "GOTO"):
+                        ErrorHandler.Errors.improperUsage(packaged[0].getName())
+                        return False
+        return True
+
+                
     
      
 

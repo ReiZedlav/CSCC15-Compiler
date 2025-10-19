@@ -16,11 +16,17 @@ class Errors:
         print(f"Error 2: Duplicate label: {label}")
     
     @staticmethod
+    def improperUsage(command):
+        print(f"Error 3: Improper usage of {command}")
+    
+    @staticmethod
+    def syntaxException(name):
+        print(f"Syntax Error Found: {name}")
+
+    @staticmethod
     def unknownStatement(message,code,line):
         print(f"{message} {" ".join(code)} at line {line}")
 
-class StackTrace:
-    pass    
-        
+
         
     

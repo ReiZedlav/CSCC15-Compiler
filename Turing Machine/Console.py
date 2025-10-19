@@ -15,13 +15,29 @@ class Console:
     def compile(self,turingFile):
         
         #still not done
-        Tokens = FrontEnd.Lexer.Tokenizer(turingFile)
+        Lexed = FrontEnd.Lexer.Tokenizer(turingFile)
+
+        if Lexed == False:
+            return
 
         #To debug Tokenization issues later.
         #for i in Tokens:
             #for j in i:
                 #print(j.getName(),"-",j.getType())
+                
+        if FrontEnd.Syntax.Analyze(Lexed) == False:
+            return
+        
+        FrontEnd.Semantic.Analyze(Lexed)
 
+
+        #afterwards... even if its grammatically correct. check
+        #if it is actually meaningful
+
+        #edge cases
+        
+        
+        
         
         
 
