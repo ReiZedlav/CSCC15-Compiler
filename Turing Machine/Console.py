@@ -6,8 +6,6 @@ class Console:
     def __init__(self):
         self.TuringMachine = ControlUnit.Head()
 
-    #TOD0 FILE HANDLER FOR .tm FILES
-
     #IDEA SINCE self.TuringMachine is an object, we can reference another a filehandler class to handle the file io
 
     #------------------------------------------------------------
@@ -19,22 +17,19 @@ class Console:
 
         if Lexed == False:
             return
-
-        #To debug Tokenization issues later.
-        #for i in Tokens:
-            #for j in i:
-                #print(j.getName(),"-",j.getType())
-                
+        
         if FrontEnd.Syntax.Analyze(Lexed) == False:
             return
         
-        FrontEnd.Semantic.Analyze(Lexed)
+        if FrontEnd.Semantic.Analyze(Lexed) == False:
+            return
+
+        if FrontEnd.Semantic.checkNonexistentLabels(Lexed) == False:
+            return 
+        
+        
 
 
-        #afterwards... even if its grammatically correct. check
-        #if it is actually meaningful
-
-        #edge cases
         
         
         

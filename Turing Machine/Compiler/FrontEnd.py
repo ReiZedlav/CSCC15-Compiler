@@ -100,7 +100,7 @@ class Lexer:
         return ProcessedTokens
 
 class Syntax:
-    
+
     @staticmethod
     def Analyze(Tokens):
         
@@ -126,6 +126,28 @@ class Syntax:
         return True
 
 class Semantic:
+
+    @staticmethod
+    def checkNonexistentLabels(Tokens):
+        labels = []
+
+        callees = []
+
+        for token in Tokens:
+            for i in token:
+                if i.getType() == "LABEL":
+                    labels.append(i.getName())
+                elif i.getType() == "CALLEE":
+                    callees.append(i.getName())
+        
+        for caller in callees:
+            labeledCaller = caller + ":"
+            if labeledCaller not in labels:
+                ErrorHandler.Errors.labelUndefined(caller)
+                return False
+        
+
+        return True
 
     @staticmethod
     def Analyze(Tokens):

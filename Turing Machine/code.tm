@@ -1,11 +1,8 @@
+
 START:
-    LEFT 
     RIGHT
     LEFT 
     RIGHT 
-    IF 5 GOTO THREE
+    IF 5 GOTO LEX
 
-LEX:
-    GOTO john
-    HALT
 

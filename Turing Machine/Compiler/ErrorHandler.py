@@ -20,6 +20,10 @@ class Errors:
         print(f"Error 3: Improper usage of {command}")
     
     @staticmethod
+    def labelUndefined(callee):
+        print(f"Error 4: No label defined for callee: {callee}")
+
+    @staticmethod
     def syntaxException(name):
         print(f"Syntax Error Found: {name}")
 
