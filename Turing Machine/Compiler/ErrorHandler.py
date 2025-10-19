@@ -12,8 +12,12 @@ class Errors:
         print("Error 1: Command Invalid!")
     
     @staticmethod
+    def duplicateLabel(label):
+        print(f"Error 2: Duplicate label: {label}")
+    
+    @staticmethod
     def unknownStatement(message,code,line):
-        print(f"{message}: {" ".join(code)} at line {line}")
+        print(f"{message} {" ".join(code)} at line {line}")
 
 class StackTrace:
     pass    

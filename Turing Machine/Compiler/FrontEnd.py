@@ -1,21 +1,30 @@
-from Compiler import ErrorHandler
+from Compiler import ErrorHandler,Token
 
 class Lexer:
 
     @staticmethod
     def verifyToken(packagedTokens,line):
-        #verify write statements
-        if len(packagedTokens) == 2:
-            if packagedTokens[0] != "WRITE" or len(str(packagedTokens[1])) > 1:
-                if (len(str(packagedTokens[1])) > 1):
-                    ErrorHandler.Errors.unknownStatement("Invalid Symbol: ",packagedTokens,line)
-                    return False
-                ErrorHandler.Errors.unknownStatement("Invalid Keyword: ",packagedTokens,line)
+        if len(packagedTokens) == 1:
+            if packagedTokens[0] == "WRITE":
+                ErrorHandler.Errors.unknownStatement("Missing Write Symbol: ",packagedTokens,line)
                 return False
+
+        #verify write statements - MISSING GOTO STATEMENT
+        if len(packagedTokens) == 2:
+            if packagedTokens[0] != "WRITE" or packagedTokens[0] != "GOTO":
+                if packagedTokens[0] == "WRITE":
+                    if len(str(packagedTokens[1])) > 1:
+                        ErrorHandler.Errors.unknownStatement("Write overbounds: ",packagedTokens,line)
+                        return False
+                
 
         if len(packagedTokens) == 4:
             if packagedTokens[0] != "IF":
                 ErrorHandler.Errors.unknownStatement("Mismatched IF: ",packagedTokens,line)
+                return False
+            
+            if len(str(packagedTokens[1])) > 1:
+                ErrorHandler.Errors.unknownStatement("Symbol overbounds: ",packagedTokens,line)
                 return False
             
             elif packagedTokens[2] != "GOTO":
@@ -25,8 +34,27 @@ class Lexer:
         if len(packagedTokens) > 4:
             ErrorHandler.Errors.unknownStatement("Syntax overbounds: ",packagedTokens,line)
             return False
-    
-             
+
+    @staticmethod
+    def duplicateChecker(rawTokens):
+        checker = {}
+
+        for i in rawTokens:
+            identifier = i[0]
+
+            if identifier[-1] == ":":
+                if i[0] not in checker:
+                    checker[i[0]] = 1
+                else:
+                    checker[i[0]] += 1
+        
+        for k,v in checker.items():
+            if v >= 2:
+                ErrorHandler.Errors.duplicateLabel(k)
+                return False
+        return True
+
+
     @staticmethod
     def Tokenizer(externalFile):
         RawTokens = []        
@@ -48,10 +76,28 @@ class Lexer:
 
                     RawTokens.append(i.strip().split())
         
-        #PROCESS THEM TOKENS HERE WITH SOME IDENTIFIERS
-        print(RawTokens)            
+        LabelCheck = Lexer.duplicateChecker(RawTokens)
 
-        return RawTokens
+        if LabelCheck == False:
+            return
+        
+        ProcessedTokens = []
+
+        for unprocessed in RawTokens:
+            packager = []
+
+            for rawToken in unprocessed:
+                token = Token.Classify(rawToken)
+                
+                #print(token.getType())
+
+                packager.append(token)
+
+            ProcessedTokens.append(packager)
+
+        #invoke compressed tokens with .getName() and .getType()
+        
+        return ProcessedTokens
     
     
      

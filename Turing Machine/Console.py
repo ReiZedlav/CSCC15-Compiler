@@ -1,5 +1,5 @@
 import ControlUnit
-from Compiler import FrontEnd,ErrorHandler
+from Compiler import FrontEnd,ErrorHandler,Token
 
 
 class Console:
@@ -16,6 +16,12 @@ class Console:
         
         #still not done
         Tokens = FrontEnd.Lexer.Tokenizer(turingFile)
+
+        #To debug Tokenization issues later.
+        #for i in Tokens:
+            #for j in i:
+                #print(j.getName(),"-",j.getType())
+
         
         
 
