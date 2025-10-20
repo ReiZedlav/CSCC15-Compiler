@@ -12,25 +12,24 @@ class Errors:
         print("Error 1: Command Invalid!")
     
     @staticmethod
-    def duplicateLabel(label):
-        print(f"Error 2: Duplicate label: {label}")
+    def instructionOverbounds(msg,line):
+        print(f"Error 2: Instruction Overbounds. {msg} at line {line}")
     
     @staticmethod
-    def improperUsage(command):
-        print(f"Error 3: Improper usage of {command}")
-    
+    def invalidArgument(msg,line,error):
+        print(f"Error 3: Invalid Argument Supplied. {msg} at line {line}. {error}")
+
+    @staticmethod
+    def semanticError(msg,line):
+        print(f"Error 4: Semantic Error. Improper usage of {msg} at line {line}")
+
     @staticmethod
     def labelUndefined(callee):
-        print(f"Error 4: No label defined for callee: {callee}")
-
+        print(f"Error 5: No label defined for callee: {callee}")
+    
     @staticmethod
-    def syntaxException(name):
-        print(f"Syntax Error Found: {name}")
-
-    @staticmethod
-    def unknownStatement(message,code,line):
-        print(f"{message} {" ".join(code)} at line {line}")
-
+    def duplicatedLabel(callee):
+        print(f"Error 6: {callee} is Duplicated")
 
         
     

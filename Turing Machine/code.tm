@@ -1,8 +1,11 @@
+check:
+    GOTO check
+    HALT 
+check:
 
 START:
-    RIGHT
-    LEFT 
-    RIGHT 
-    IF 5 GOTO LEX
+    LEFT
+    GOTO START
+    IF GOTO check
 
 

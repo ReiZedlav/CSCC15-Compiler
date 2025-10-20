@@ -15,9 +15,6 @@ class Console:
         #still not done
         Lexed = FrontEnd.Lexer.Tokenizer(turingFile)
 
-        if Lexed == False:
-            return
-        
         if FrontEnd.Syntax.Analyze(Lexed) == False:
             return
         
@@ -25,11 +22,12 @@ class Console:
             return
 
         if FrontEnd.Semantic.checkNonexistentLabels(Lexed) == False:
-            return 
+            return
         
+        if FrontEnd.Semantic.checkDuplicateLabels(Lexed) == False:
+            return
+
         
-
-
         
         
         

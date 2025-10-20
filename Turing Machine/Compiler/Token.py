@@ -13,12 +13,16 @@ def identify(rawToken):
         return "CALLEE"
 
 class Classify:
-    def __init__(self,rawToken):
+    def __init__(self,rawToken,line):
         self.name = rawToken
+        self.line = line
         self.type = identify(rawToken)
 
     def getType(self):
         return self.type
+    
+    def getLine(self):
+        return self.line
 
     def getName(self):
         return self.name
