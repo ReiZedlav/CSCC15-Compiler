@@ -12,20 +12,31 @@ class Console:
 
     def compile(self,turingFile):
         
-        #still not done
+        #Divide each command into tokens and designate 
+        #a grammar rule based on regular expressions.
         Lexed = FrontEnd.Lexer.Tokenizer(turingFile)
 
+        #check if it is syntactically correct
         if FrontEnd.Syntax.Analyze(Lexed) == False:
             return
         
+        #even if syntax is correct, check if it is meaningful 
         if FrontEnd.Semantic.Analyze(Lexed) == False:
             return
 
+        #check CALLEES that are called from nonexisting labels
         if FrontEnd.Semantic.checkNonexistentLabels(Lexed) == False:
             return
         
+        #check dupes
         if FrontEnd.Semantic.checkDuplicateLabels(Lexed) == False:
             return
+        
+        #semantic checks on labels
+        if FrontEnd.Semantic.finalLabelCheck(Lexed) == False:
+            return
+
+        #group labels and containerize inside labels
 
         
         

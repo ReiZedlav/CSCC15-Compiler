@@ -29,7 +29,18 @@ class Errors:
     
     @staticmethod
     def duplicatedLabel(callee):
-        print(f"Error 6: {callee} is Duplicated")
+        print(f"Error 6. {callee} is duplicated")
+    
+    @staticmethod
+    def startNotFound():
+        print("Error 7. No START: or start: label detected")
+    
+    @staticmethod
+    def invalidLabel(label):
+        if len(label) == 1:
+            print(f"Error 8. Invalid Label {label}. SYMBOL cannot be a LABEL")
+        else:
+            print(f"Error 8. Invalid Label {label}. KEYWORD cannot be a LABEL")
 
         
     

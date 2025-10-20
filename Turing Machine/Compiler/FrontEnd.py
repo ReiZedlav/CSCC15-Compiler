@@ -169,8 +169,30 @@ class Semantic:
                 return False
         return True
 
+    @staticmethod 
+    def finalLabelCheck(Tokens):
+        check = []
 
-        return None
+        for i in Tokens:
+            if i[0].getType() == "LABEL":
+                verify = i[0].getName()[:-1] 
+                
+                if len(verify) == 1:
+                    ErrorHandler.Errors.invalidLabel(verify)
+                    return False
+
+                if verify in ["LEFT","RIGHT","IF","GOTO","HALT","WRITE"]:
+                    ErrorHandler.Errors.invalidLabel(verify)
+                    return False
+
+        for j in Tokens:
+            check.append(j[0].getName())
+        
+        if "START:" not in check and "start" not in check:
+            ErrorHandler.Errors.startNotFound()
+            return False
+        
+        return True
                 
     
 

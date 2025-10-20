@@ -1,11 +1,12 @@
-check:
-    GOTO check
-    HALT 
-check:
+
+@!#!@#:
 
 START:
-    LEFT
-    GOTO START
-    IF GOTO check
 
+LEF:
+    LEFT 
+    RIGHT 
+    LEFT
+    RIGHT
+    GOTO test
 
