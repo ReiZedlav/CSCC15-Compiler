@@ -139,12 +139,12 @@ class Semantic:
                 if i.getType() == "LABEL":
                     labels.append(i.getName())
                 elif i.getType() == "CALLEE":
-                    callees.append(i.getName())
+                    callees.append(i)
         
         for caller in callees:
-            labeledCaller = caller + ":"
+            labeledCaller = caller.getName() + ":"
             if labeledCaller not in labels:
-                ErrorHandler.Errors.labelUndefined(caller)
+                ErrorHandler.Errors.labelUndefined(caller.getName(),caller.getLine())
                 return False
         
 
@@ -170,7 +170,7 @@ class Semantic:
         return True
 
     @staticmethod 
-    def finalLabelCheck(Tokens):
+    def keywordAsLabelOrSymbolAsLabelCheck(Tokens):
         check = []
 
         for i in Tokens:

@@ -17,6 +17,7 @@ class Classify:
         self.name = rawToken
         self.line = line
         self.type = identify(rawToken)
+        #integrate labelName here
 
     def getType(self):
         return self.type

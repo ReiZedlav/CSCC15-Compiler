@@ -6,7 +6,7 @@ class Cell:
 
 class Head:
     def __init__(self):
-        self.pointer = Cell(None)
+        self.pointer = Cell("_")
 
     def printTape(self):
         current = self.pointer
@@ -32,7 +32,7 @@ class Head:
 
     def left(self):
         if self.pointer.Previous == None:
-            newCell = Cell(None)
+            newCell = Cell("_")
             self.pointer.Previous = newCell
             newCell.Next = self.pointer
             newCell.Previous = None
@@ -43,7 +43,7 @@ class Head:
 
     def right(self):
         if self.pointer.Next == None:
-            newCell = Cell(None)
+            newCell = Cell("_")
 
             self.pointer.Next = newCell
             newCell.Previous = self.pointer

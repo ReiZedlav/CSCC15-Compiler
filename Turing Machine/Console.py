@@ -14,30 +14,33 @@ class Console:
         
         #Divide each command into tokens and designate 
         #a grammar rule based on regular expressions.
-        Lexed = FrontEnd.Lexer.Tokenizer(turingFile)
+        Table = FrontEnd.Lexer.Tokenizer(turingFile)
 
         #check if it is syntactically correct
-        if FrontEnd.Syntax.Analyze(Lexed) == False:
+        if FrontEnd.Syntax.Analyze(Table) == False:
             return
         
         #even if syntax is correct, check if it is meaningful 
-        if FrontEnd.Semantic.Analyze(Lexed) == False:
+        if FrontEnd.Semantic.Analyze(Table) == False:
             return
 
         #check CALLEES that are called from nonexisting labels
-        if FrontEnd.Semantic.checkNonexistentLabels(Lexed) == False:
+        if FrontEnd.Semantic.checkNonexistentLabels(Table) == False:
             return
         
         #check dupes
-        if FrontEnd.Semantic.checkDuplicateLabels(Lexed) == False:
+        if FrontEnd.Semantic.checkDuplicateLabels(Table) == False:
             return
         
         #semantic checks on labels
-        if FrontEnd.Semantic.finalLabelCheck(Lexed) == False:
+        if FrontEnd.Semantic.keywordAsLabelOrSymbolAsLabelCheck(Table) == False:
             return
 
-        #group labels and containerize inside labels
+        #TURING MACHINE SHOULD HAVE A FINITE SYMBOL OF [0, 1, B]
 
+        #update control unit to add 1 blank space when reaching the end node.
+
+        
         
         
         
@@ -89,12 +92,12 @@ class Console:
 
         return
 
-    def interact(self):
+    def shell(self):
         while True:
             command = input("$ ")
-            self.execute(command)
+            self.execute(command.strip())
 
 #ADD TUI HERE SOON
 
 user = Console()
-user.interact()
+user.shell()

@@ -1,12 +1,14 @@
 
-@!#!@#:
-
 START:
 
+rawrt:
+
+
+
 LEF:
-    LEFT 
+    LEFT
     RIGHT 
     LEFT
     RIGHT
-    GOTO test
+    GOTO rawrt
 
