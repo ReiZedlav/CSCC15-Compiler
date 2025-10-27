@@ -188,7 +188,7 @@ class Semantic:
         for j in Tokens:
             check.append(j[0].getName())
         
-        if "START:" not in check and "start" not in check:
+        if "START:" not in check and "start:" not in check:
             ErrorHandler.Errors.startNotFound()
             return False
         

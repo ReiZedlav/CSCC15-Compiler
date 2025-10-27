@@ -1,6 +1,5 @@
 import ControlUnit
-from Compiler import FrontEnd,ErrorHandler,Token
-
+from Compiler import FrontEnd,BackEnd,ErrorHandler,Token
 
 class Console:
     def __init__(self):
@@ -36,16 +35,14 @@ class Console:
         if FrontEnd.Semantic.keywordAsLabelOrSymbolAsLabelCheck(Table) == False:
             return
 
-        #TURING MACHINE SHOULD HAVE A FINITE SYMBOL OF [0, 1, B]
+        BackEnd.Describe.groupLabels(Table) 
 
-        #update control unit to add 1 blank space when reaching the end node.
+        Segregated = BackEnd.Describe.segregate(Table)
 
         
-        
-        
-        
-        
-        
+
+        for i in Segregated["UNLABELED"]:
+            print(len(i))
         
 
 

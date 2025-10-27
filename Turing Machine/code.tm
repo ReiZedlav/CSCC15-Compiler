@@ -1,14 +1,25 @@
+LEFT
+LEFT 
+RIGHT
 
-START:
+check_left:
+	LEFT
+	
+check_right:
+	RIGHT
+    LEFT
 
-rawrt:
+test:
+    RIGHT
+    LEFT
 
-
-
-LEF:
+start:
     LEFT
     RIGHT 
     LEFT
-    RIGHT
-    GOTO rawrt
+    WRITE 5
+    GOTO check_left
+    GOTO check_right
+    IF 5 GOTO test
+    
 
