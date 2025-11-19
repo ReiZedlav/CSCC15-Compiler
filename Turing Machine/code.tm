@@ -1,17 +1,20 @@
-LEFT
+
 LEFT 
 RIGHT
+RIGHT
+WRITE 1
 
 check_left:
 	LEFT
 	
 check_right:
-	RIGHT
+    RIGHT
     LEFT
 
 test:
     RIGHT
     LEFT
+    HALT
 
 start:
     LEFT

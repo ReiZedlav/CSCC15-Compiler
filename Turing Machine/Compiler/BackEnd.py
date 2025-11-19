@@ -1,3 +1,4 @@
+from Compiler import Token
 
 class Describe:
     @staticmethod
@@ -5,7 +6,7 @@ class Describe:
         
         newTable = []
 
-        currentLabel = "UNLABELED"
+        currentLabel = "UNLABELED:"
 
         for row in Table:
             if row[0].getType() == "LABEL":
@@ -15,14 +16,51 @@ class Describe:
         return None
 
     @staticmethod
+    def unpack(row):
+        unpacked = []
+
+        for i in row:
+            unpacked.append(i.getName())
+        return unpacked
+
+    @staticmethod
     def segregate(Table):
 
         segregated = {}
 
+        currentLabel = "UNLABELED"
+
+        container = []
+
         for row in Table:
-            if row[0].getLabel() != None:
-                if row[0].getLabel() not in segregated:
-                    segregated[row[0].getLabel()] = [row]
-                else:
-                    segregated[row[0].getLabel()].append(row)    
+            if row[0].getType() != "LABEL":
+
+                container.append(Token.Classify.declassify(row))
+                
+            elif row[0].getType() == "LABEL":
+
+                segregated[currentLabel] = container
+
+                currentLabel = row[0].getName()[:-1]
+
+                container = []
+
+        segregated[currentLabel] = container
+
+        print(segregated["start"])                
+        
         return segregated
+
+    
+            
+            
+
+
+        
+
+            
+        
+
+        
+        
+        

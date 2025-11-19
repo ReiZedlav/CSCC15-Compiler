@@ -34,4 +34,17 @@ class Classify:
     def setLabel(self,labelName):
         self.fromLabel = labelName
     
+    @staticmethod
+    def declassify(token):
+        if len(token) == 1:
+            return [token[0].getName()]
+
+        elif len(token) == 2:
+            return [token[0].getName(),token[1].getName()]
+
+        elif len(token) == 4:
+            return [token[0].getName(),token[1].getName(),token[2].getName(),token[3].getName()]
+
+    
+    
     

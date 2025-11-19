@@ -5,8 +5,6 @@ class Console:
     def __init__(self):
         self.TuringMachine = ControlUnit.Head()
 
-    #IDEA SINCE self.TuringMachine is an object, we can reference another a filehandler class to handle the file io
-
     #------------------------------------------------------------
 
     def compile(self,turingFile):
@@ -41,8 +39,14 @@ class Console:
 
         
 
-        for i in Segregated["UNLABELED"]:
-            print(len(i))
+        
+        
+        
+
+
+        
+
+        
         
 
 
