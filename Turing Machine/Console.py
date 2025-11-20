@@ -37,6 +37,8 @@ class Console:
 
         Segregated = BackEnd.Describe.segregate(Table)
 
+        BackEnd.Execute(Segregated,self.TuringMachine)
+
         
 
         

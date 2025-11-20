@@ -47,13 +47,13 @@ class Describe:
 
         segregated[currentLabel] = container
 
-        print(segregated["start"])                
+        #print(segregated["UNLABELED"])                
         
         return segregated
 
-    
-            
-            
+def Execute(code,TuringMachine):
+    for k,v in code.items():
+        print(k,v)
 
 
         

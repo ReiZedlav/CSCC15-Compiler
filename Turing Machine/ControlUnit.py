@@ -7,6 +7,7 @@ class Cell:
 class Head:
     def __init__(self):
         self.pointer = Cell("_")
+        self.position = 0
 
     def printTape(self):
         current = self.pointer
@@ -32,14 +33,20 @@ class Head:
 
     def left(self):
         if self.pointer.Previous == None:
-            newCell = Cell("_")
-            self.pointer.Previous = newCell
-            newCell.Next = self.pointer
-            newCell.Previous = None
+            if self.position != 0:
 
-            self.pointer = newCell
+                newCell = Cell("_")
+                self.pointer.Previous = newCell
+                newCell.Next = self.pointer
+                newCell.Previous = None
+
+                self.pointer = newCell
+            #to do list here
+
         else: 
-            self.pointer = self.pointer.Previous  
+            self.pointer = self.pointer.Previous
+
+            self.position -= 1  
 
     def right(self):
         if self.pointer.Next == None:
@@ -50,8 +57,10 @@ class Head:
             newCell.Next = None
 
             self.pointer = newCell
+
+            self.position += 1
         else: 
-            self.pointer = self.pointer.Next  
+            self.pointer = self.pointer.Next
 
-
+            self.position += 1  
 
