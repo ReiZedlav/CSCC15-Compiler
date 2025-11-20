@@ -1,27 +1,20 @@
-
 WRITE 1
 RIGHT
 WRITE 0
 RIGHT
 WRITE 1
-RIGHT
-WRITE 0
 
-WRITE_ZERO:
-    WRITE 0
+check_next:
     RIGHT
-    GOTO start
+    GOTO START
 
 WRITE_ONE:
     WRITE 1
-    RIGHT
-    GOTO start
-
-STOP:
-    WRITE 0
     HALT
 
-start:
-    IF 1 GOTO WRITE_ZERO
-    IF 0 GOTO WRITE_ONE
-    IF _ GOTO STOP
+START:
+    IF 1 GOTO check_next
+    IF 0 GOTO check_next
+    IF _ GOTO WRITE_ONE
+
+    

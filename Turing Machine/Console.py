@@ -5,6 +5,7 @@ from Compiler import FrontEnd,BackEnd,ErrorHandler,Token
 class Console:
     def __init__(self):
         self.TuringMachine = ControlUnit.Head()
+        
 
     #------------------------------------------------------------
 

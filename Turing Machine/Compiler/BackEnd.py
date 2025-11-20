@@ -54,7 +54,10 @@ def executeLabel(instructions,label,TuringMachine):
 
     for i in code:
         if len(i) == 1:
-            if i[0] == "LEFT":
+            if i[0] == "HALT":
+                return
+
+            elif i[0] == "LEFT":
                 TuringMachine.left()
                 TuringMachine.printTape()
             
@@ -62,8 +65,7 @@ def executeLabel(instructions,label,TuringMachine):
                 TuringMachine.right()
                 TuringMachine.printTape()
             
-            elif i[0] == "HALT":
-                exit()
+            
         
         elif len(i) == 2:
             if i[0] == "WRITE":
@@ -78,8 +80,10 @@ def executeLabel(instructions,label,TuringMachine):
             
             if i[1] == cmp:
                 executeLabel(instructions,i[3],TuringMachine)
+                return
             else:
                 continue
+
 
     
     
@@ -90,7 +94,10 @@ def Execute(code,TuringMachine):
 
     for i in initial:
         if len(i) == 1:
-            if i[0] == "LEFT":
+            if i[0] == "HALT":
+                return
+
+            elif i[0] == "LEFT":
                 TuringMachine.left()
                 TuringMachine.printTape()
             
@@ -98,8 +105,7 @@ def Execute(code,TuringMachine):
                 TuringMachine.right()
                 TuringMachine.printTape()
             
-            elif i[0] == "HALT":
-                exit()
+            
         
         elif len(i) == 2:
             if i[0] == "WRITE":
@@ -111,9 +117,9 @@ def Execute(code,TuringMachine):
         
         elif len(i) == 4:
             cmp = TuringMachine.read()
-            
             if i[1] == cmp:
                 executeLabel(code,i[3],TuringMachine)
+                return 
             else:
                 continue
     
