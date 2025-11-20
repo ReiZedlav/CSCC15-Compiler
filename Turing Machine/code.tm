@@ -1,28 +1,29 @@
 
-LEFT 
+WRITE N
 RIGHT
+WRITE I
+RIGHT 
+WRITE G
 RIGHT
-WRITE 1
+WRITE G
+RIGHT 
+WRITE A
 
-check_left:
-	LEFT
-	
-check_right:
+content:
+    WRITE M
     RIGHT
-    LEFT
-
-test:
+    WRITE A
     RIGHT
-    LEFT
+    WRITE R
+    RIGHT 
+    WRITE I
+    RIGHT
+    WRITE U
+    RIGHT
+    WRITE S
     HALT
 
 start:
-    LEFT
-    RIGHT 
-    LEFT
-    WRITE 5
-    GOTO check_left
-    GOTO check_right
-    IF 5 GOTO test
+    GOTO content
     
 

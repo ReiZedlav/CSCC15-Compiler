@@ -46,14 +46,85 @@ class Describe:
                 container = []
 
         segregated[currentLabel] = container
-
-        #print(segregated["UNLABELED"])                
         
         return segregated
 
+def executeLabel(instructions,label,TuringMachine):
+    code = instructions[label]
+
+    for i in code:
+        if len(i) == 1:
+            if i[0] == "LEFT":
+                TuringMachine.left()
+                TuringMachine.printTape()
+            
+            elif i[0] == "RIGHT":
+                TuringMachine.right()
+                TuringMachine.printTape()
+            
+            elif i[0] == "HALT":
+                exit()
+        
+        elif len(i) == 2:
+            if i[0] == "WRITE":
+                TuringMachine.write(i[1])
+                TuringMachine.printTape()
+            
+            elif i[0] == "GOTO":
+                executeLabel(instructions,i[1],TuringMachine)
+        
+        elif len(i) == 4:
+            cmp = TuringMachine.read()
+            
+            if i[1] == cmp:
+                executeLabel(instructions,i[3],TuringMachine)
+            else:
+                continue
+
+    
+    
+
+
 def Execute(code,TuringMachine):
-    for k,v in code.items():
-        print(k,v)
+    initial = code["UNLABELED"]
+
+    for i in initial:
+        if len(i) == 1:
+            if i[0] == "LEFT":
+                TuringMachine.left()
+                TuringMachine.printTape()
+            
+            elif i[0] == "RIGHT":
+                TuringMachine.right()
+                TuringMachine.printTape()
+            
+            elif i[0] == "HALT":
+                exit()
+        
+        elif len(i) == 2:
+            if i[0] == "WRITE":
+                TuringMachine.write(i[1])
+                TuringMachine.printTape()
+            
+            elif i[0] == "GOTO":
+                executeLabel(code,i[1],TuringMachine)
+        
+        elif len(i) == 4:
+            cmp = TuringMachine.read()
+            
+            if i[1] == cmp:
+                executeLabel(code,i[3],TuringMachine)
+            else:
+                continue
+    
+    if "start" in code:
+        TuringMachine.default()
+        executeLabel(code,"start",TuringMachine)
+    elif "START" in code:
+        TuringMachine.default()
+        executeLabel(code,"START",TuringMachine)
+
+    return
 
 
         

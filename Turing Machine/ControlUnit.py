@@ -25,7 +25,6 @@ class Head:
         print(tape)
     
     def read(self):
-        print(self.pointer.Symbol)
         return self.pointer.Symbol
 
     def write(self,symbol):
@@ -62,5 +61,18 @@ class Head:
         else: 
             self.pointer = self.pointer.Next
 
-            self.position += 1  
+            self.position += 1 
+
+    def default(self):
+
+        current = self.pointer
+
+        while current.Previous != None:
+            current = current.Previous
+
+        self.pointer = current
+
+        self.position = 0
+        
+        return
 

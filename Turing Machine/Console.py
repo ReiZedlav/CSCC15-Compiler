@@ -1,6 +1,8 @@
 import ControlUnit
 from Compiler import FrontEnd,BackEnd,ErrorHandler,Token
 
+#to do list. the turing machine execution start at the very top
+
 class Console:
     def __init__(self):
         self.TuringMachine = ControlUnit.Head()
