@@ -1,29 +1,27 @@
 
-WRITE N
+WRITE 1
 RIGHT
-WRITE I
-RIGHT 
-WRITE G
+WRITE 0
 RIGHT
-WRITE G
-RIGHT 
-WRITE A
+WRITE 1
+RIGHT
+WRITE 0
 
-content:
-    WRITE M
+WRITE_ZERO:
+    WRITE 0
     RIGHT
-    WRITE A
+    GOTO start
+
+WRITE_ONE:
+    WRITE 1
     RIGHT
-    WRITE R
-    RIGHT 
-    WRITE I
-    RIGHT
-    WRITE U
-    RIGHT
-    WRITE S
+    GOTO start
+
+STOP:
+    WRITE 0
     HALT
 
 start:
-    GOTO content
-    
-
+    IF 1 GOTO WRITE_ZERO
+    IF 0 GOTO WRITE_ONE
+    IF _ GOTO STOP
