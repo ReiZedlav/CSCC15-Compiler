@@ -1,3 +1,4 @@
+
 class Cell:
     def __init__(self,Symbol,Previous=None,Next=None):
         self.Symbol = Symbol
@@ -9,6 +10,13 @@ class Head:
         self.pointer = Cell("_")
         self.position = 0
 
+    def visualizePosition(self,tape):
+        for cell in tape:
+            if cell == self.pointer:
+                print(f"[{cell.Symbol}]" + " ",end="")
+            else: 
+                print(cell.Symbol + " ",end="")
+
     def printTape(self):
         current = self.pointer
 
@@ -18,11 +26,16 @@ class Head:
             current = current.Previous
         
         while current.Next != None:
-            tape.append(current.Symbol)
+            #tape.append(current.Symbol)
+            tape.append(current)
             current = current.Next
-        tape.append(current.Symbol)
+
+        tape.append(current)
+        #tape.append(current.Symbol)
         
-        print(" ".join(tape))
+        self.visualizePosition(tape)
+        #print(" ".join(tape))
+        print()
     
     def read(self):
         return self.pointer.Symbol
