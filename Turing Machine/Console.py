@@ -14,7 +14,12 @@ class Console:
         
         #Divide each command into tokens and designate 
         #a grammar rule based on regular expressions.
-        Table = FrontEnd.Lexer.Tokenizer(turingFile)
+
+        try:
+            Table = FrontEnd.Lexer.Tokenizer(turingFile)
+        except FileNotFoundError:
+            ErrorHandler.Errors.fileNotFound()
+            return
 
         #check if it is syntactically correct
         if FrontEnd.Syntax.Analyze(Table) == False:
@@ -59,7 +64,7 @@ class Console:
 
     def execute(self,command):
         #------------------------------------------
-        if "TMC" in command:
+        if "TMX" in command:
             argument = command.split()
             if len(argument) == 1 or len(argument) > 2:
                 ErrorHandler.Errors.invalidCommand()

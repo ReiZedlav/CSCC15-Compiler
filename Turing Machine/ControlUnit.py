@@ -26,15 +26,13 @@ class Head:
             current = current.Previous
         
         while current.Next != None:
-            #tape.append(current.Symbol)
             tape.append(current)
             current = current.Next
 
         tape.append(current)
-        #tape.append(current.Symbol)
         
         self.visualizePosition(tape)
-        #print(" ".join(tape))
+        
         print()
     
     def read(self):
