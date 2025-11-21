@@ -1,4 +1,5 @@
 import ControlUnit
+import tui
 from Compiler import FrontEnd,BackEnd,ErrorHandler,Token
 
 
@@ -71,6 +72,10 @@ class Console:
             self.TuringMachine.left()
             self.TuringMachine.printTape()
             return
+        
+        elif command == "SHOW":
+            self.TuringMachine.printTape()
+            return
 
         elif command == "RIGHT":
             self.TuringMachine.right()
@@ -103,6 +108,8 @@ class Console:
             self.execute(command.strip())
 
 #ADD TUI HERE SOON
+
+tui.Design.header()
 
 user = Console()
 user.shell()

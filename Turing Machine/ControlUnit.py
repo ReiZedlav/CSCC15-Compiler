@@ -22,7 +22,7 @@ class Head:
             current = current.Next
         tape.append(current.Symbol)
         
-        print(tape)
+        print(" ".join(tape))
     
     def read(self):
         return self.pointer.Symbol
@@ -75,4 +75,6 @@ class Head:
         self.position = 0
         
         return
+    
+
 
