@@ -1,23 +1,12 @@
 
-
-ELSE:
-	RIGHT
-	
-	GOTO START
-	
-
-START:
-	IF 1 GOTO check_next
-	IF 0 GOTO check_next
-	IF _ GOTO write_one
-	
-	GOTO ELSE
-	
-check_next:
-	RIGHT
-	GOTO START
-
-write_one:
+TEST:
 	WRITE 1
+	RIGHT
+
+TEST2:
+	WRITE 0
 	HALT
 
+START:
+	GOTO TEST
+	GOTO TEST2

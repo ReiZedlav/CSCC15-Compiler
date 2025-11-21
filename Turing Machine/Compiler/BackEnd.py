@@ -74,8 +74,7 @@ def executeLabel(instructions,label,TuringMachine):
             
             elif i[0] == "GOTO":
                 executeLabel(instructions,i[1],TuringMachine)
-                return
-        
+    
         elif len(i) == 4:
             cmp = TuringMachine.read()
             
