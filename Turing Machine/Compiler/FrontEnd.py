@@ -99,11 +99,11 @@ class Semantic:
     def Analyze(Tokens):
         for line in Tokens:
             if len(line) == 4:
-                if line[0].getName() != "IF":
+                if line[0].getName().upper() != "IF":
                     ErrorHandler.Errors.semanticError(line[0].getName(),line[0].getLine())
                     return False
                 
-                if line[2].getName() != "GOTO":
+                if line[2].getName().upper() != "GOTO":
                     ErrorHandler.Errors.semanticError(line[2].getName(),line[2].getLine())
                     return False
 
@@ -111,19 +111,19 @@ class Semantic:
 
 
                 if line[1].getType() == "SYMBOL":
-                    if line[0].getName() != "WRITE":
+                    if line[0].getName().upper() != "WRITE":
                         ErrorHandler.Errors.semanticError(line[0].getName() + " " + line[1].getName(),line[0].getLine())
                         return False
                 
                 elif line[1].getType() == "CALLEE":
-                    if line[0].getName() != "GOTO":
+                    if line[0].getName().upper() != "GOTO":
                         ErrorHandler.Errors.semanticError(line[0].getName() + " " + line[1].getName(),line[0].getLine())
                         return False
 
 
 
             elif len(line) == 1:
-                if line[0].getName() in ["GOTO","IF","WRITE"]:
+                if line[0].getName().upper() in ["IF","GOTO","WRITE"]:
                     ErrorHandler.Errors.semanticError(line[0].getName(),line[0].getLine())
                     return False
         return True

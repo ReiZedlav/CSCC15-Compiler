@@ -109,7 +109,7 @@ class Console:
 
     def shell(self):
         while True:
-            command = input("$ ").upper()
+            command = input("$ ")
             self.execute(command.strip())
 
 tui.Design.header()

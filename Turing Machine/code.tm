@@ -1,15 +1,14 @@
 
+check_next:
+	right
+	goto start
 
+remove_last:
+	left
+	write _
+	halt
 
-STOP:
-	lefT 
-	HALT
-
-ELSE:
-	WRITE _
-	rIgHt
-	GOTO START
-
-START:
-	IF _ GOTO STOP
-	GOTO ELSE
+start:
+	if 1 goto check_next
+	if 0 goto check_next
+	if _ goto remove_last
