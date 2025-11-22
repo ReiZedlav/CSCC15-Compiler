@@ -47,10 +47,6 @@ class Console:
 
         BackEnd.Execute(Segregated,self.TuringMachine)
 
-    def debug(self,turingFile):
-        
-        self.compile(turingFile)        
-
     #------------------------------------------------------------
 
     def execute(self,command):
@@ -63,15 +59,6 @@ class Console:
                 self.compile(argument[1])
             return
         #-----------------------------------------
-
-        elif "DEBUG" in command or "debug" in command:
-            argument = command.split()
-
-            if len(argument) == 1 or len(argument) > 2:
-                ErrorHandler.Errors.invalidCommand()
-            else:
-                self.debug(argument[1])
-            return 
 
         elif command.upper() == "LEFT":
             self.TuringMachine.left()
