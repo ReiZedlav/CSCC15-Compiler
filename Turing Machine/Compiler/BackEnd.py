@@ -1,4 +1,5 @@
 from Compiler import Token
+import time
 
 class Describe:
     @staticmethod
@@ -52,6 +53,8 @@ class Describe:
 def executeLabel(instructions,label,TuringMachine):
     code = instructions[label]
 
+    time.sleep(0.2)
+
     for i in code:
         if len(i) == 1:
             if i[0].upper() == "HALT":
@@ -91,6 +94,8 @@ def executeLabel(instructions,label,TuringMachine):
 
 def Execute(code,TuringMachine):
     initial = code["UNLABELED"]
+
+    time.sleep(0.2)
 
     for i in initial:
         if len(i) == 1:
