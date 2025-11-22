@@ -47,24 +47,15 @@ class Console:
 
         BackEnd.Execute(Segregated,self.TuringMachine)
 
+    def debug(self,turingFile):
         
-
-        
-        
-        
-
-
-        
-
-        
-        
-
+        self.compile(turingFile)        
 
     #------------------------------------------------------------
 
     def execute(self,command):
         #------------------------------------------
-        if "TMX" in command:
+        if "TMX" in command or "tmx" in command:
             argument = command.split()
             if len(argument) == 1 or len(argument) > 2:
                 ErrorHandler.Errors.invalidCommand()
@@ -73,25 +64,34 @@ class Console:
             return
         #-----------------------------------------
 
-        elif command == "LEFT":
+        elif "DEBUG" in command or "debug" in command:
+            argument = command.split()
+
+            if len(argument) == 1 or len(argument) > 2:
+                ErrorHandler.Errors.invalidCommand()
+            else:
+                self.debug(argument[1])
+            return 
+
+        elif command.upper() == "LEFT":
             self.TuringMachine.left()
             self.TuringMachine.printTape()
             return
         
-        elif command == "SHOW":
+        elif command.upper() == "SHOW":
             self.TuringMachine.printTape()
             return
 
-        elif command == "RIGHT":
+        elif command.upper() == "RIGHT":
             self.TuringMachine.right()
             self.TuringMachine.printTape()
             return
 
-        elif command == "HALT":
+        elif command.upper() == "HALT":
             self.TuringMachine.printTape()
             exit()
             
-        elif "WRITE" in command:
+        elif "WRITE" in command.upper():
             size = len(command)
 
             if size >= 8:
