@@ -131,9 +131,11 @@ def Execute(code,TuringMachine):
     
     if "start" in code:
         TuringMachine.default()
+        TuringMachine.printTape()
         executeLabel(code,"start",TuringMachine)
     elif "START" in code:
         TuringMachine.default()
+        TuringMachine.printTape()
         executeLabel(code,"START",TuringMachine)
 
     return

@@ -1,15 +1,21 @@
 
 
-check_next:
+
+write_zero:
+	write 1
 	right
 	goto start
 
-append_zero:
-	write 1
+write_one:
+	write 0
+	right
+	goto start
+
+stop:
+	left
 	halt
 
-
 start:
-	if 1 goto check_next
-	if 0 goto check_next
-	if _ goto append_zero
+	if 0 goto write_zero
+	if 1 goto write_one
+	if _ goto stop

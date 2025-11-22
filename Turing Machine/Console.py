@@ -11,6 +11,8 @@ class Console:
     #------------------------------------------------------------
 
     def compile(self,turingFile):
+
+        
         
         #Divide each command into tokens and designate 
         #a grammar rule based on regular expressions.

@@ -44,19 +44,22 @@ class Head:
     def left(self):
         if self.pointer.Previous == None:
             if self.position != 0:
-
                 newCell = Cell("_")
                 self.pointer.Previous = newCell
                 newCell.Next = self.pointer
                 newCell.Previous = None
 
                 self.pointer = newCell
-            #to do list here
-
+                
         else: 
             self.pointer = self.pointer.Previous
 
             self.position -= 1  
+
+            if self.pointer.Next.Next == None:
+                if self.pointer.Next.Symbol == "_":
+                    self.pointer.Next = None
+        
 
     def right(self):
         if self.pointer.Next == None:
