@@ -54,31 +54,31 @@ def executeLabel(instructions,label,TuringMachine):
 
     for i in code:
         if len(i) == 1:
-            if i[0] == "HALT":
+            if i[0].upper() == "HALT":
                 return
 
-            elif i[0] == "LEFT":
+            elif i[0].upper() == "LEFT":
                 TuringMachine.left()
                 TuringMachine.printTape()
             
-            elif i[0] == "RIGHT":
+            elif i[0].upper() == "RIGHT":
                 TuringMachine.right()
                 TuringMachine.printTape()
             
             
         
         elif len(i) == 2:
-            if i[0] == "WRITE":
+            if i[0].upper() == "WRITE":
                 TuringMachine.write(i[1])
                 TuringMachine.printTape()
             
-            elif i[0] == "GOTO":
+            elif i[0].upper() == "GOTO":
                 executeLabel(instructions,i[1],TuringMachine)
     
         elif len(i) == 4:
             cmp = TuringMachine.read()
             
-            if i[1] == cmp:
+            if i[1].upper() == cmp:
                 executeLabel(instructions,i[3],TuringMachine)
                 return
             else:
@@ -94,26 +94,26 @@ def Execute(code,TuringMachine):
 
     for i in initial:
         if len(i) == 1:
-            if i[0] == "HALT":
+            if i[0].upper() == "HALT":
                 TuringMachine.printTape()
                 return
 
-            elif i[0] == "LEFT":
+            elif i[0].upper() == "LEFT":
                 TuringMachine.left()
                 TuringMachine.printTape()
             
-            elif i[0] == "RIGHT":
+            elif i[0].upper() == "RIGHT":
                 TuringMachine.right()
                 TuringMachine.printTape()
             
             
         
         elif len(i) == 2:
-            if i[0] == "WRITE":
+            if i[0].upper() == "WRITE":
                 TuringMachine.write(i[1])
                 TuringMachine.printTape()
             
-            elif i[0] == "GOTO":
+            elif i[0].upper() == "GOTO":
                 executeLabel(code,i[1],TuringMachine)
         
         elif len(i) == 4:

@@ -109,10 +109,8 @@ class Console:
 
     def shell(self):
         while True:
-            command = input("$ ")
+            command = input("$ ").upper()
             self.execute(command.strip())
-
-#ADD TUI HERE SOON
 
 tui.Design.header()
 

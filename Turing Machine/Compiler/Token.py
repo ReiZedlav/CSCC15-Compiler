@@ -3,7 +3,7 @@ def identify(rawToken):
     if rawToken[-1] == ":":
         return "LABEL"
 
-    if rawToken in ["LEFT","RIGHT","IF","GOTO","HALT","WRITE"]:
+    if rawToken.upper() in ["LEFT","RIGHT","IF","GOTO","HALT","WRITE"]:
         return "KEYWORD"
     
     if len(str(rawToken)) == 1:

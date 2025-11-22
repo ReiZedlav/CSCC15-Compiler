@@ -181,7 +181,7 @@ class Semantic:
                     ErrorHandler.Errors.invalidLabel(verify)
                     return False
 
-                if verify in ["LEFT","RIGHT","IF","GOTO","HALT","WRITE"]:
+                if verify.upper() in ["LEFT","RIGHT","IF","GOTO","HALT","WRITE"]:
                     ErrorHandler.Errors.invalidLabel(verify)
                     return False
 
