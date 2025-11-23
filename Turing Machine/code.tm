@@ -1,21 +1,14 @@
 
-
-
-write_zero:
-	write 1
-	right
-	goto start
-
-write_one:
-	write 0
-	right
-	goto start
-
-stop:
-	left
+write_n:
+	write n
 	halt
 
+next:
+	right
+	right
+	goto start
+
 start:
-	if 0 goto write_zero
-	if 1 goto write_one
-	if _ goto stop
+	if n goto next
+	if _ goto write_n
+	

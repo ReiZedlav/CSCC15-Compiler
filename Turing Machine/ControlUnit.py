@@ -80,10 +80,9 @@ class Head:
     def default(self):
 
         current = self.pointer
-
         while current.Previous != None:
             current = current.Previous
-
+                    
         self.pointer = current
 
         self.position = 0

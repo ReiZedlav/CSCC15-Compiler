@@ -80,8 +80,7 @@ def executeLabel(instructions,label,TuringMachine):
     
         elif len(i) == 4:
             cmp = TuringMachine.read()
-            
-            if i[1].upper() == cmp:
+            if i[1] == cmp:
                 executeLabel(instructions,i[3],TuringMachine)
                 return
             else:
