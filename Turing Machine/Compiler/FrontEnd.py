@@ -167,6 +167,11 @@ class Semantic:
             if v >= 2:
                 ErrorHandler.Errors.duplicatedLabel(k)
                 return False
+        
+        if "START:" in checker and "start:" in checker:
+            ErrorHandler.Errors.duplicatedLabel("start: and START:")
+            return False
+
         return True
 
     @staticmethod 

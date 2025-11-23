@@ -1,14 +1,17 @@
 
-write_word:
-	write w
+
+write_binary:
+	write 1
 	right
-	write o
+	write 1
 	right
-	write r
+	write 0
 	right
-	write d
+	write 1
+	right
+	write 0
 
 start:
-	if _ goto write_word
+	if _ goto write_binary
 	right
 	goto start
