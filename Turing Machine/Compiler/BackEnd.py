@@ -53,18 +53,18 @@ class Describe:
 def executeLabel(instructions,label,TuringMachine):
     code = instructions[label]
 
-    time.sleep(0.2)
-
     for i in code:
         if len(i) == 1:
             if i[0].upper() == "HALT":
                 return
 
             elif i[0].upper() == "LEFT":
+                time.sleep(0.1)
                 TuringMachine.left()
                 TuringMachine.printTape()
             
             elif i[0].upper() == "RIGHT":
+                time.sleep(0.1)
                 TuringMachine.right()
                 TuringMachine.printTape()
             
@@ -72,14 +72,17 @@ def executeLabel(instructions,label,TuringMachine):
         
         elif len(i) == 2:
             if i[0].upper() == "WRITE":
+                time.sleep(0.1)
                 TuringMachine.write(i[1])
                 TuringMachine.printTape()
             
             elif i[0].upper() == "GOTO":
+                time.sleep(0.1)
                 executeLabel(instructions,i[1],TuringMachine)
     
         elif len(i) == 4:
             cmp = TuringMachine.read()
+            time.sleep(0.1)
             if i[1] == cmp:
                 executeLabel(instructions,i[3],TuringMachine)
                 return
@@ -94,8 +97,6 @@ def executeLabel(instructions,label,TuringMachine):
 def Execute(code,TuringMachine):
     initial = code["UNLABELED"]
 
-    time.sleep(0.2)
-
     for i in initial:
         if len(i) == 1:
             if i[0].upper() == "HALT":
@@ -103,10 +104,12 @@ def Execute(code,TuringMachine):
                 return
 
             elif i[0].upper() == "LEFT":
+                time.sleep(0.1)
                 TuringMachine.left()
                 TuringMachine.printTape()
             
             elif i[0].upper() == "RIGHT":
+                time.sleep(0.1)
                 TuringMachine.right()
                 TuringMachine.printTape()
             
@@ -114,6 +117,7 @@ def Execute(code,TuringMachine):
         
         elif len(i) == 2:
             if i[0].upper() == "WRITE":
+                time.sleep(0.1)
                 TuringMachine.write(i[1])
                 TuringMachine.printTape()
             
@@ -121,6 +125,7 @@ def Execute(code,TuringMachine):
                 executeLabel(code,i[1],TuringMachine)
         
         elif len(i) == 4:
+            time.sleep(0.1)
             cmp = TuringMachine.read()
             if i[1] == cmp:
                 executeLabel(code,i[3],TuringMachine)

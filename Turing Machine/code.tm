@@ -1,14 +1,14 @@
 
-write_n:
-	write n
-	halt
-
-next:
+write_word:
+	write w
 	right
+	write o
 	right
-	goto start
+	write r
+	right
+	write d
 
 start:
-	if n goto next
-	if _ goto write_n
-	
+	if _ goto write_word
+	right
+	goto start
