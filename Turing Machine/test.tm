@@ -1,12 +1,7 @@
 
 
-write 1
-right
-write 0
-right
-write 1
-right
-write 0
+
+
 
 write_one:
 	write 1

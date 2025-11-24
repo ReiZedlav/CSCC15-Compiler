@@ -57,7 +57,7 @@ def debugLabel(instructions,label,TuringMachine):
         
         while True: 
 
-            command = str(input("Debugging >> "))
+            command = str(input("TM Debugger >> "))
 
             if command == "":
                 break
@@ -100,7 +100,7 @@ def debugLabel(instructions,label,TuringMachine):
                 
                 TuringMachine.right()
                 TuringMachine.printTape()
-        
+            
         elif len(i) == 2:
             if i[0].upper() == "WRITE":
             
@@ -119,6 +119,7 @@ def debugLabel(instructions,label,TuringMachine):
                 debugLabel(instructions,i[3],TuringMachine)
                 return
             else:
+                print(f"Condition Skipped: {" ".join(i)}")
                 continue
 
 
@@ -219,7 +220,7 @@ def ExecuteInitials(code,TuringMachine,debug):
         TuringMachine.printTape()
         
         if debug == True:
-            executeLabel(code,"START",TuringMachine)
+            debugLabel(code,"START",TuringMachine)
         else:
             executeLabel(code,"START",TuringMachine)
 
