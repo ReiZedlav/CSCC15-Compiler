@@ -1,14 +1,18 @@
 
+
+
+
+
 next:
- 	right
+	right
 	goto checker
 
 final_verdict:
 	left
 	
 	if 0 goto type_even
-    if 1 goto type_odd
-    if 2 goto type_even
+	if 1 goto type_odd
+	if 2 goto type_even
 	if 3 goto type_odd
 	if 4 goto type_even
 	if 5 goto type_odd
@@ -41,9 +45,7 @@ start:
 	
 type_invalid:
 	right
-	write _
 	right
-	
 	write I
 	right
 	write N
@@ -57,7 +59,6 @@ type_invalid:
 	write I 
 	right
 	write D
-	halt
 
 type_even:
 	right
@@ -80,3 +81,4 @@ type_odd:
 	right
 	write D
 	halt
+

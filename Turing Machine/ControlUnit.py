@@ -76,6 +76,16 @@ class Head:
             self.pointer = self.pointer.Next
 
             self.position += 1 
+    
+    def clearTape(self):
+        self.pointer.Previous = None
+        self.pointer.Next = None
+
+        self.pointer = Cell("_")
+
+        self.position = 0
+
+
 
     def default(self):
 

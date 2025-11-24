@@ -50,6 +50,49 @@ class Describe:
         
         return segregated
 
+def debugLabel(instructions,label,TuringMachine):
+    code = instructions[label]
+
+    for i in code:
+
+        debug = str(input("TM Debug Mode >> "))
+
+        #add a debugger here
+
+        if len(i) == 1:
+            if i[0].upper() == "HALT":
+                return
+
+            elif i[0].upper() == "LEFT":
+                time.sleep(0.1)
+                TuringMachine.left()
+                TuringMachine.printTape()
+            
+            elif i[0].upper() == "RIGHT":
+                time.sleep(0.1)
+                TuringMachine.right()
+                TuringMachine.printTape()
+        
+        elif len(i) == 2:
+            if i[0].upper() == "WRITE":
+                time.sleep(0.1)
+                TuringMachine.write(i[1])
+                TuringMachine.printTape()
+            
+            elif i[0].upper() == "GOTO":
+                time.sleep(0.1)
+                executeLabel(instructions,i[1],TuringMachine)
+    
+        elif len(i) == 4:
+            cmp = TuringMachine.read()
+            time.sleep(0.1)
+            if i[1] == cmp:
+                executeLabel(instructions,i[3],TuringMachine)
+                return
+            else:
+                continue
+
+
 def executeLabel(instructions,label,TuringMachine):
     code = instructions[label]
 
@@ -94,7 +137,7 @@ def executeLabel(instructions,label,TuringMachine):
     
 
 
-def Execute(code,TuringMachine):
+def Execute(code,TuringMachine,debug):
     initial = code["UNLABELED"]
 
     for i in initial:
@@ -136,11 +179,20 @@ def Execute(code,TuringMachine):
     if "start" in code:
         TuringMachine.default()
         TuringMachine.printTape()
-        executeLabel(code,"start",TuringMachine)
+
+        if debug == True:
+            debugLabel(code,"start",TuringMachine)
+        else:
+            executeLabel(code,"start",TuringMachine)
+
     elif "START" in code:
         TuringMachine.default()
         TuringMachine.printTape()
-        executeLabel(code,"START",TuringMachine)
+        
+        if debug == True:
+            executeLabel(code,"START",TuringMachine)
+        else:
+            executeLabel(code,"START",TuringMachine)
 
     return
 

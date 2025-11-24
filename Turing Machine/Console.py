@@ -10,7 +10,7 @@ class Console:
 
     #------------------------------------------------------------
 
-    def compile(self,turingFile):
+    def compile(self,turingFile,debug):
 
         
         
@@ -47,20 +47,35 @@ class Console:
 
         Segregated = BackEnd.Describe.segregate(Table)
 
-        BackEnd.Execute(Segregated,self.TuringMachine)
+        if debug == True:
+            BackEnd.Execute(Segregated,self.TuringMachine,debug)
+        else:
+            BackEnd.Execute(Segregated,self.TuringMachine,debug)
 
     #------------------------------------------------------------
 
     def execute(self,command):
-        #------------------------------------------
         if "TMX" in command or "tmx" in command:
             argument = command.split()
             if len(argument) == 1 or len(argument) > 2:
                 ErrorHandler.Errors.invalidCommand()
             else:
-                self.compile(argument[1])
+                self.compile(argument[1],debug=False)
             return
-        #-----------------------------------------
+        
+        elif "DEBUG" in command or "debug" in command:
+            argument = command.split()
+            if len(argument) == 1 or len(argument) > 2:
+                ErrorHandler.Errors.invalidCommand()
+            else:
+                self.compile(argument[1],debug=True)
+            return
+
+
+        elif command.upper() == "CLEAR":
+            self.TuringMachine.clearTape()
+            self.TuringMachine.printTape()
+            return
 
         elif command.upper() == "LEFT":
             self.TuringMachine.left()
