@@ -1,4 +1,4 @@
-from Compiler import Token
+from Compiler import Token,ErrorHandler
 import time
 
 class Describe:
@@ -54,40 +54,69 @@ def debugLabel(instructions,label,TuringMachine):
     code = instructions[label]
 
     for i in code:
+        
+        while True: 
 
-        debug = str(input("TM Debug Mode >> "))
+            command = str(input("Debugging >> "))
 
-        #add a debugger here
+            if command == "":
+                break
+            
+            elif command.upper() == "HALT":
+                return
+
+            elif command.upper() == "LEFT":
+                TuringMachine.left()
+                TuringMachine.printTape()
+                continue
+
+            elif command.upper() == "RIGHT":
+                TuringMachine.right()
+                TuringMachine.printTape() 
+                continue
+
+            elif "WRITE" in command.upper():
+                size = len(command)
+
+                if size >= 8:
+                    ErrorHandler.Errors.invalidCommand()
+                    continue
+
+                if size == 7 and size < 8:
+                    TuringMachine.write(command[-1])
+                    TuringMachine.printTape()
+                    continue       
 
         if len(i) == 1:
             if i[0].upper() == "HALT":
                 return
 
             elif i[0].upper() == "LEFT":
-                time.sleep(0.1)
+                
                 TuringMachine.left()
                 TuringMachine.printTape()
             
             elif i[0].upper() == "RIGHT":
-                time.sleep(0.1)
+                
                 TuringMachine.right()
                 TuringMachine.printTape()
         
         elif len(i) == 2:
             if i[0].upper() == "WRITE":
-                time.sleep(0.1)
+            
                 TuringMachine.write(i[1])
                 TuringMachine.printTape()
             
             elif i[0].upper() == "GOTO":
-                time.sleep(0.1)
-                executeLabel(instructions,i[1],TuringMachine)
+                print(f"Jumping to: {" ".join(i)}")
+                debugLabel(instructions,i[1],TuringMachine)
     
         elif len(i) == 4:
             cmp = TuringMachine.read()
-            time.sleep(0.1)
+    
             if i[1] == cmp:
-                executeLabel(instructions,i[3],TuringMachine)
+                print(f"Jumping to: {" ".join(i)}")
+                debugLabel(instructions,i[3],TuringMachine)
                 return
             else:
                 continue
@@ -137,7 +166,7 @@ def executeLabel(instructions,label,TuringMachine):
     
 
 
-def Execute(code,TuringMachine,debug):
+def ExecuteInitials(code,TuringMachine,debug):
     initial = code["UNLABELED"]
 
     for i in initial:

@@ -48,9 +48,9 @@ class Console:
         Segregated = BackEnd.Describe.segregate(Table)
 
         if debug == True:
-            BackEnd.Execute(Segregated,self.TuringMachine,debug)
+            BackEnd.ExecuteInitials(Segregated,self.TuringMachine,debug)
         else:
-            BackEnd.Execute(Segregated,self.TuringMachine,debug)
+            BackEnd.ExecuteInitials(Segregated,self.TuringMachine,debug)
 
     #------------------------------------------------------------
 
