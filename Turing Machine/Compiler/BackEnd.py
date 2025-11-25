@@ -89,6 +89,7 @@ def debugLabel(instructions,label,TuringMachine):
 
         if len(i) == 1:
             if i[0].upper() == "HALT":
+                print(f"Halting State Reached!")
                 return
 
             elif i[0].upper() == "LEFT":
