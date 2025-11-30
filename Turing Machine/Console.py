@@ -12,39 +12,27 @@ class Console:
 
     def compile(self,turingFile,debug):
 
-        
-        
-        #Divide each command into tokens and designate 
-        #a grammar rule based on regular expressions.
-
         try:
             Table = FrontEnd.Lexer.Tokenizer(turingFile)
         except FileNotFoundError:
             ErrorHandler.Errors.fileNotFound()
             return
 
-        #check if it is syntactically correct
         if FrontEnd.Syntax.Analyze(Table) == False:
             return
-        
-        #even if syntax is correct, check if it is meaningful 
+          
         if FrontEnd.Semantic.Analyze(Table) == False:
             return
-
-        #check CALLEES that are called from nonexisting labels
-        if FrontEnd.Semantic.checkNonexistentLabels(Table) == False:
-            return
-        
-        #check dupes
+    
         if FrontEnd.Semantic.checkDuplicateLabels(Table) == False:
             return
-        
-        #semantic checks on labels
-        if FrontEnd.Semantic.keywordAsLabelOrSymbolAsLabelCheck(Table) == False:
+
+        if FrontEnd.Semantic.checkNonexistentLabels(Table) == False:
             return
 
-        BackEnd.Describe.groupLabels(Table) 
-
+        if FrontEnd.Semantic.keywordAsLabelOrSymbolAsLabelCheck(Table) == False:
+            return
+        
         Segregated = BackEnd.Describe.segregate(Table)
 
         if debug == True:

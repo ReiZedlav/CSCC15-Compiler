@@ -8,7 +8,6 @@ class Cell:
 class Head:
     def __init__(self):
         self.pointer = Cell("_")
-        self.position = 0
 
     def visualizePosition(self,tape):
         for cell in tape:
@@ -43,18 +42,9 @@ class Head:
 
     def left(self):
         if self.pointer.Previous == None:
-            if self.position != 0:
-                newCell = Cell("_")
-                self.pointer.Previous = newCell
-                newCell.Next = self.pointer
-                newCell.Previous = None
-
-                self.pointer = newCell
-                
+            return
         else: 
             self.pointer = self.pointer.Previous
-
-            self.position -= 1  
 
             if self.pointer.Next.Next == None:
                 if self.pointer.Next.Symbol == "_":
@@ -71,11 +61,8 @@ class Head:
 
             self.pointer = newCell
 
-            self.position += 1
         else: 
             self.pointer = self.pointer.Next
-
-            self.position += 1 
     
     def clearTape(self):
         self.pointer.Previous = None
@@ -83,7 +70,6 @@ class Head:
 
         self.pointer = Cell("_")
 
-        self.position = 0
 
 
 
@@ -96,8 +82,6 @@ class Head:
             
         self.pointer = current
 
-        self.position = 0
-        
         return
     
 

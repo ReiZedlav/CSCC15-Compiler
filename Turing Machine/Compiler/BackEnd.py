@@ -2,28 +2,7 @@ from Compiler import Token,ErrorHandler
 import time
 
 class Describe:
-    @staticmethod
-    def groupLabels(Table):
-        
-        newTable = []
-
-        currentLabel = "UNLABELED:"
-
-        for row in Table:
-            if row[0].getType() == "LABEL":
-                currentLabel = row[0].getName()
-            else:
-                row[0].setLabel(currentLabel)    
-        return None
-
-    @staticmethod
-    def unpack(row):
-        unpacked = []
-
-        for i in row:
-            unpacked.append(i.getName())
-        return unpacked
-
+    
     @staticmethod
     def segregate(Table):
 

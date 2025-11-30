@@ -62,23 +62,28 @@ class Syntax:
                 return False
             
             elif len(line) == 4:
-                if line[3].getType() != "CALLEE":
-                    ErrorHandler.Errors.invalidArgument(line[3].getName(),line[3].getLine(),"This must be a CALLEE")
+                if line[0].getType() != "KEYWORD":
+                    ErrorHandler.Errors.invalidArgument(line[0].getName(),line[0].getLine(),"This must be a KEYWORD")
                     return False
-
-                #possible redundancy
+                
+                if line[1].getType() != "SYMBOL":
+                    ErrorHandler.Errors.invalidArgument(line[1].getName(),line[1].getLine(),"This must be a SYMBOL")
+                    return False
+                
                 if line[2].getType() != "KEYWORD":
                     ErrorHandler.Errors.invalidArgument(line[2].getName(),line[2].getLine(),"This must be a KEYWORD")
                     return False
 
-                if line[1].getType() != "SYMBOL":
-                    ErrorHandler.Errors.invalidArgument(line[1].getName(),line[1].getLine(),"This must be a SYMBOL")
-                
-                #possible redundancy
-                if line[0].getType() != "KEYWORD":
-                    ErrorHandler.Errors.invalidArgument(line[0].getName(),line[0].getLine(),"This must be a KEYWORD")
+
+                if line[3].getType() != "CALLEE":
+                    ErrorHandler.Errors.invalidArgument(line[3].getName(),line[3].getLine(),"This must be a CALLEE")
                     return False
-            
+
+                
+
+                
+                
+                
             elif len(line) == 2:
                 if line[0].getType() != "KEYWORD":
                     ErrorHandler.Errors.invalidArgument(line[0].getName(),line[0].getLine(),"This must be a KEYWORD")
@@ -101,6 +106,10 @@ class Semantic:
             if len(line) == 4:
                 if line[0].getName().upper() != "IF":
                     ErrorHandler.Errors.semanticError(line[0].getName(),line[0].getLine())
+                    return False
+
+                if len(line[1].getName()) > 1:
+                    ErrorHandler.Errors.semanticError(line[1].getName(),line[1].getLine())
                     return False
                 
                 if line[2].getName().upper() != "GOTO":

@@ -17,8 +17,7 @@ class Classify:
         self.name = rawToken
         self.line = line
         self.type = identify(rawToken)
-        self.fromLabel = None
-
+        
     def getType(self):
         return self.type
     
@@ -27,12 +26,6 @@ class Classify:
 
     def getName(self):
         return self.name
-    
-    def getLabel(self):
-        return self.fromLabel
-
-    def setLabel(self,labelName):
-        self.fromLabel = labelName
     
     @staticmethod
     def declassify(token):

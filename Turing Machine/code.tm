@@ -1,82 +1,90 @@
+IF 0 GOTO sulatmarkerforzero
+IF 1 GOTO sulatmarkerforone
 
-next:
- 	right
-	goto checker
+sulatmarkerforzero:
+WRITE X
+GOTO start
 
-final_verdict:
-	left
-	
-	if 0 goto type_even
-    if 1 goto type_odd
-    if 2 goto type_even
-	if 3 goto type_odd
-	if 4 goto type_even
-	if 5 goto type_odd
-	if 6 goto type_even
-	if 7 goto type_odd
-	if 8 goto type_even
-	if 9 goto type_odd
+sulatmarkerforone:
 
-checker:
-	if 1 goto next
-	if 2 goto next
-	if 3 goto next
-	if 4 goto next
-	if 5 goto next
-	if 6 goto next
-	if 7 goto next
-	if 8 goto next
-	if 9 goto next
-	if 0 goto next
-	
-	if _ goto final_verdict
-	
-	goto type_invalid
+WRITE Y
+GOTO start
 
 start:
-	if 0 goto type_even
-	if _ goto type_invalid
-	
-	goto checker
-	
-type_invalid:
-	right
-	write _
-	right
-	
-	write I
-	right
-	write N
-	right
-	write V
-	right
-	write A
-	right
-	write L
-	right
-	write I 
-	right
-	write D
-	halt
+IF _ GOTO checknextsymbol
+RIGHT
+GOTO start
 
-type_even:
-	right
-	right
-	write E
-	right
-	write V
-	right
-	write E
-	right
-	write N
-	halt
-	
-type_odd:
-	right
-	right
-	write O
-	right
-	write D
-	right
-	write D
-	halt
+checknextsymbol:
+LEFT
+IF X GOTO reachedfirstsymbol
+IF Y GOTO reachedfirstsymbol
+IF 0 GOTO bypasstwoblanksandsulatzeroattheend
+IF 1 GOTO bypasstwoblanksandsulatoneattheend
+
+bypasstwoblanksandsulatzeroattheend:
+WRITE C
+looptillblank1:
+RIGHT
+IF _ GOTO nextblankthensulatzero
+GOTO looptillblank1
+nextblankthensulatzero:
+RIGHT
+IF _ GOTO sulatzeroattheend
+GOTO nextblankthensulatzero
+sulatzeroattheend:
+WRITE 0
+GOTO moverwhtothenextsymbol
+moverwhtothenextsymbol:
+IF C GOTO rewritesymbolC
+IF D GOTO rewritesymbolD
+LEFT
+GOTO moverwhtothenextsymbol
+rewritesymbolC:
+write 0
+goto checknextsymbol
+rewritesymbolD:
+write 1
+goto checknextsymbol
+bypasstwoblanksandsulatoneattheend:
+WRITE D
+looptillblank2:
+RIGHT
+IF _ GOTO nextblankthensulatone
+GOTO looptillblank2
+nextblankthensulatone:
+RIGHT
+IF _ GOTO sulatoneattheend
+GOTO nextblankthensulatone
+sulatoneattheend:
+WRITE 1
+GOTO moverwhtothenextsymbol
+reachedfirstsymbol:
+IF X goto rewritefirstsymbolzero
+IF Y goto rewritefirstsymbolone
+rewritefirstsymbolzero:
+write 0
+looptillblank3:
+RIGHT 
+IF _ goto looptillblank4
+goto looptillblank3
+looptillblank4:
+RIGHT
+IF _ goto sulatlastzero
+goto looptillblank4
+sulatlastzero:
+WRITE 0
+halt
+rewritefirstsymbolone:
+write 1
+looptillblank5:
+RIGHT 
+IF _ goto looptillblank6
+goto looptillblank5
+looptillblank6:
+RIGHT
+IF _ goto sulatlastone
+goto looptillblank6
+sulatlastone:
+WRITE 1
+halt

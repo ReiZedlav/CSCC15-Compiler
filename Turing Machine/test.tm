@@ -1,9 +1,9 @@
 
-
-
-
+add_A:
+	write A
+	halt
 
 start:
-	write 1
+	if _ goto add_A
 	right
 	goto start
