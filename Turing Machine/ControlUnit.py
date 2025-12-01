@@ -50,7 +50,6 @@ class Head:
                 if self.pointer.Next.Symbol == "_":
                     self.pointer.Next = None
         
-
     def right(self):
         if self.pointer.Next == None:
             newCell = Cell("_")
@@ -70,7 +69,17 @@ class Head:
 
         self.pointer = Cell("_")
 
+    def setTape(self,rawString):
+        
+        for symbol in rawString:
+            self.write(symbol)
+            self.right()
+            
+        self.left()
 
+        self.printTape()
+
+        return
 
 
     def default(self):

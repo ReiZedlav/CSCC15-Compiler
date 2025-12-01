@@ -35,7 +35,8 @@ class Console:
         
         Segregated = BackEnd.Describe.segregate(Table)
 
-        BackEnd.ExecuteInitials(Segregated,self.TuringMachine)
+        self.TuringMachine.default()
+        BackEnd.executeLabel(Segregated,"UNLABELED",self.TuringMachine)
 
     #------------------------------------------------------------
 
@@ -48,6 +49,17 @@ class Console:
                 self.compile(argument[1])
             return
         
+        elif "TAPE" in command or "tape" in command:
+            argument = command.split()
+            if len(argument) == 1 or len(argument) > 2:
+                ErrorHandler.Errors.invalidCommand()
+            else:
+                self.TuringMachine.clearTape()
+
+                self.TuringMachine.setTape(argument[1])
+                
+            return
+
         elif command.upper() == "CLEAR":
             self.TuringMachine.clearTape()
             self.TuringMachine.printTape()

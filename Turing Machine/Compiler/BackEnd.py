@@ -1,5 +1,4 @@
 from Compiler import Token,ErrorHandler
-import time
 
 class Describe:
     
@@ -32,7 +31,7 @@ class Describe:
 
 def deadEndAutoJump(instructions,currentLabel):
     
-    labels = list(instructions.keys())
+    labels = list(instructions.keys()) + [None]
 
     for i in range(0,len(labels),1):
         if labels[i] == currentLabel:
@@ -42,38 +41,44 @@ def deadEndAutoJump(instructions,currentLabel):
 def executeLabel(instructions,label,TuringMachine):
     code = instructions[label]
 
+    if code == []:
+        return
+
     for i in code:
+
+        print("\n")
+
+        while True:
+            step = str(input("Stepping Thru >> "))
+            print("Now executing: " + " ".join(i))
+            break
+
         if len(i) == 1:
             if i[0].upper() == "HALT":
                 return
 
             elif i[0].upper() == "LEFT":
-                time.sleep(0.1)
                 TuringMachine.left()
                 TuringMachine.printTape()
                 continue
 
             elif i[0].upper() == "RIGHT":
-                time.sleep(0.1)
                 TuringMachine.right()
                 TuringMachine.printTape()
                 continue
 
         elif len(i) == 2:
             if i[0].upper() == "WRITE":
-                time.sleep(0.1)
                 TuringMachine.write(i[1])
                 TuringMachine.printTape()
                 continue
 
             elif i[0].upper() == "GOTO":
-                time.sleep(0.1)
                 executeLabel(instructions,i[1],TuringMachine)
                 return
 
         elif len(i) == 4:
             cmp = TuringMachine.read()
-            time.sleep(0.1)
             if i[1] == cmp:
                 executeLabel(instructions,i[3],TuringMachine)
                 return
@@ -86,13 +91,7 @@ def executeLabel(instructions,label,TuringMachine):
 
     return 
 
-def ExecuteInitials(code,TuringMachine):
 
-    TuringMachine.default()
-
-    executeLabel(code,"UNLABELED",TuringMachine)
-
-    return
 
 
 
