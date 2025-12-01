@@ -18,7 +18,7 @@ class Errors:
     @staticmethod
     def invalidArgument(msg,line,error):
         print(f"Error 3. Invalid Argument Supplied. {msg} at line {line}. {error}")
-
+ 
     @staticmethod
     def semanticError(msg,line):
         print(f"Error 4. Semantic Error. Improper usage of {msg} at line {line}")
@@ -32,9 +32,9 @@ class Errors:
         print(f"Error 6. {callee} is duplicated")
     
     @staticmethod
-    def startNotFound():
-        print("Error 7. No START: or start: label detected")
-    
+    def syntaxError(line,syntax):
+        print(f"Error 8. Invalid syntax: {syntax} at line {line}.")
+
     @staticmethod
     def invalidLabel(label):
         if len(label) == 1:

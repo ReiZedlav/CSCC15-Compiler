@@ -10,7 +10,7 @@ class Console:
 
     #------------------------------------------------------------
 
-    def compile(self,turingFile,debug):
+    def compile(self,turingFile):
 
         try:
             Table = FrontEnd.Lexer.Tokenizer(turingFile)
@@ -35,10 +35,7 @@ class Console:
         
         Segregated = BackEnd.Describe.segregate(Table)
 
-        if debug == True:
-            BackEnd.ExecuteInitials(Segregated,self.TuringMachine,debug)
-        else:
-            BackEnd.ExecuteInitials(Segregated,self.TuringMachine,debug)
+        BackEnd.ExecuteInitials(Segregated,self.TuringMachine)
 
     #------------------------------------------------------------
 
@@ -48,18 +45,9 @@ class Console:
             if len(argument) == 1 or len(argument) > 2:
                 ErrorHandler.Errors.invalidCommand()
             else:
-                self.compile(argument[1],debug=False)
+                self.compile(argument[1])
             return
         
-        elif "DEBUG" in command or "debug" in command:
-            argument = command.split()
-            if len(argument) == 1 or len(argument) > 2:
-                ErrorHandler.Errors.invalidCommand()
-            else:
-                self.compile(argument[1],debug=True)
-            return
-
-
         elif command.upper() == "CLEAR":
             self.TuringMachine.clearTape()
             self.TuringMachine.printTape()

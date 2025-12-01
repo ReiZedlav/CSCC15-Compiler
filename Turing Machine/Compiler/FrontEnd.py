@@ -79,10 +79,14 @@ class Syntax:
                     ErrorHandler.Errors.invalidArgument(line[3].getName(),line[3].getLine(),"This must be a CALLEE")
                     return False
 
-                
+            elif len(line) == 3:
+                syntax = []
 
-                
-                
+                for grammar in line:
+                    syntax.append(grammar.getName())
+
+                ErrorHandler.Errors.syntaxError(line[0].getLine()," ".join(syntax))
+                return False   
                 
             elif len(line) == 2:
                 if line[0].getType() != "KEYWORD":
@@ -176,11 +180,7 @@ class Semantic:
             if v >= 2:
                 ErrorHandler.Errors.duplicatedLabel(k)
                 return False
-        
-        if "START:" in checker and "start:" in checker:
-            ErrorHandler.Errors.duplicatedLabel("start: and START:")
-            return False
-
+    
         return True
 
     @staticmethod 
@@ -201,11 +201,7 @@ class Semantic:
 
         for j in Tokens:
             check.append(j[0].getName())
-        
-        if "START:" not in check and "start:" not in check:
-            ErrorHandler.Errors.startNotFound()
-            return False
-        
+    
         return True
                 
     

@@ -2,89 +2,107 @@ IF 0 GOTO sulatmarkerforzero
 IF 1 GOTO sulatmarkerforone
 
 sulatmarkerforzero:
-WRITE X
-GOTO start
+	WRITE X
+	GOTO start
 
 sulatmarkerforone:
-
-WRITE Y
-GOTO start
+	WRITE Y
+	GOTO start
 
 start:
-IF _ GOTO checknextsymbol
-RIGHT
-GOTO start
+	IF _ GOTO checknextsymbol
+	RIGHT
+	GOTO start
 
 checknextsymbol:
-LEFT
-IF X GOTO reachedfirstsymbol
-IF Y GOTO reachedfirstsymbol
-IF 0 GOTO bypasstwoblanksandsulatzeroattheend
-IF 1 GOTO bypasstwoblanksandsulatoneattheend
+	LEFT
+	IF X GOTO reachedfirstsymbol
+	IF Y GOTO reachedfirstsymbol
+	IF 0 GOTO bypasstwoblanksandsulatzeroattheend
+	IF 1 GOTO bypasstwoblanksandsulatoneattheend
 
 bypasstwoblanksandsulatzeroattheend:
-WRITE C
+	WRITE C
+
 looptillblank1:
-RIGHT
-IF _ GOTO nextblankthensulatzero
-GOTO looptillblank1
+	RIGHT
+	IF _ GOTO nextblankthensulatzero
+	GOTO looptillblank1
+	
 nextblankthensulatzero:
-RIGHT
-IF _ GOTO sulatzeroattheend
-GOTO nextblankthensulatzero
+	RIGHT
+	IF _ GOTO sulatzeroattheend
+	GOTO nextblankthensulatzero
+	
 sulatzeroattheend:
-WRITE 0
-GOTO moverwhtothenextsymbol
+	WRITE 0
+	GOTO moverwhtothenextsymbol
+	
 moverwhtothenextsymbol:
-IF C GOTO rewritesymbolC
-IF D GOTO rewritesymbolD
-LEFT
-GOTO moverwhtothenextsymbol
+	IF C GOTO rewritesymbolC
+	IF D GOTO rewritesymbolD
+	LEFT
+	GOTO moverwhtothenextsymbol
+	
 rewritesymbolC:
-write 0
-goto checknextsymbol
+	write 0
+	goto checknextsymbol
+	
 rewritesymbolD:
-write 1
-goto checknextsymbol
+	write 1
+	goto checknextsymbol
+	
 bypasstwoblanksandsulatoneattheend:
-WRITE D
+	WRITE D
+	
 looptillblank2:
-RIGHT
-IF _ GOTO nextblankthensulatone
-GOTO looptillblank2
+	RIGHT
+	IF _ GOTO nextblankthensulatone
+	GOTO looptillblank2
+	
 nextblankthensulatone:
-RIGHT
-IF _ GOTO sulatoneattheend
-GOTO nextblankthensulatone
+	RIGHT
+	IF _ GOTO sulatoneattheend
+	GOTO nextblankthensulatone
+	
 sulatoneattheend:
-WRITE 1
-GOTO moverwhtothenextsymbol
+	WRITE 1
+	GOTO moverwhtothenextsymbol
+	
 reachedfirstsymbol:
-IF X goto rewritefirstsymbolzero
-IF Y goto rewritefirstsymbolone
+	IF X goto rewritefirstsymbolzero
+	IF Y goto rewritefirstsymbolone
+	
 rewritefirstsymbolzero:
-write 0
+	write 0
+	
 looptillblank3:
-RIGHT 
-IF _ goto looptillblank4
-goto looptillblank3
+	RIGHT 
+	IF _ goto looptillblank4
+	goto looptillblank3
+	
 looptillblank4:
-RIGHT
-IF _ goto sulatlastzero
-goto looptillblank4
+	RIGHT
+	IF _ goto sulatlastzero
+	goto looptillblank4
+	
 sulatlastzero:
-WRITE 0
-halt
+	WRITE 0
+	halt
+	
 rewritefirstsymbolone:
-write 1
+	write 1
+	
 looptillblank5:
-RIGHT 
-IF _ goto looptillblank6
-goto looptillblank5
+	RIGHT 
+	IF _ goto looptillblank6
+	goto looptillblank5
+	
 looptillblank6:
-RIGHT
-IF _ goto sulatlastone
-goto looptillblank6
+	RIGHT
+	IF _ goto sulatlastone
+	goto looptillblank6
+	
 sulatlastone:
-WRITE 1
-halt
+	WRITE 1
+	halt
