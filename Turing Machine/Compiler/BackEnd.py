@@ -1,4 +1,5 @@
 from Compiler import Token,ErrorHandler
+import time
 
 class Describe:
     
@@ -39,19 +40,20 @@ def deadEndAutoJump(instructions,currentLabel):
 
 
 def executeLabel(instructions,label,TuringMachine):
-    code = instructions[label]
-
-    if code == []:
+    time.sleep(0.1)
+    if label == None:
         return
+
+    code = instructions[label]
 
     for i in code:
 
-        print("\n")
+        #print("\n")
 
-        while True:
-            step = str(input("Stepping Thru >> "))
-            print("Now executing: " + " ".join(i))
-            break
+        #while True:
+            #step = str(input("Stepping Thru >> "))
+            #print("Now executing: " + " ".join(i))
+            #break
 
         if len(i) == 1:
             if i[0].upper() == "HALT":
