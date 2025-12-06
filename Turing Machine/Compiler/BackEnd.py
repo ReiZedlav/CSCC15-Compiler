@@ -1,13 +1,8 @@
 from Compiler import Token,ErrorHandler
-import time
 
 RESET = "\033[0m"
 BOLD = "\033[1m"
 RED = "\033[31m"
-GREEN = "\033[32m"
-YELLOW = "\033[33m"
-BLUE = "\033[34m"
-CYAN = "\033[36m"
 
 class Describe:
     
@@ -55,17 +50,16 @@ def visualizeLabel(code,index,labelname):
         else:
             print("    " + " ".join(code[count]))
         
-    print()
+    print("\n")
 
 def executeLabel(instructions,label,TuringMachine):
     if label == None:
         return
 
     code = instructions[label]
-
+    
     for index in range(0,len(code)):
 
-        
         print("\n")
 
         while True:
