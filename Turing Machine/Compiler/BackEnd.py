@@ -1,6 +1,14 @@
 from Compiler import Token,ErrorHandler
 import time
 
+RESET = "\033[0m"
+BOLD = "\033[1m"
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+CYAN = "\033[36m"
+
 class Describe:
     
     @staticmethod
@@ -39,50 +47,61 @@ def deadEndAutoJump(instructions,currentLabel):
             return labels[i + 1]
 
 
+def visualizeLabel(code,index,labelname):
+    print(labelname + ":")
+    for count in range(0,len(code)):
+        if count == index:
+            print(BOLD + RED + "    ["+ " ".join(code[count]) + "]" + RESET)
+        else:
+            print("    " + " ".join(code[count]))
+        
+    print()
+
 def executeLabel(instructions,label,TuringMachine):
-    time.sleep(0.1)
     if label == None:
         return
 
     code = instructions[label]
 
-    for i in code:
+    for index in range(0,len(code)):
 
-        #print("\n")
+        
+        print("\n")
 
-        #while True:
-            #step = str(input("Stepping Thru >> "))
-            #print("Now executing: " + " ".join(i))
-            #break
+        while True:
+            step = str(input(""))
+            visualizeLabel(code,index,label)
+            break
 
-        if len(i) == 1:
-            if i[0].upper() == "HALT":
+        if len(code[index]) == 1:
+            if code[index][0].upper() == "HALT":
+                TuringMachine.printTape()
                 return
 
-            elif i[0].upper() == "LEFT":
+            elif code[index][0].upper() == "LEFT":
                 TuringMachine.left()
                 TuringMachine.printTape()
                 continue
 
-            elif i[0].upper() == "RIGHT":
+            elif code[index][0].upper() == "RIGHT":
                 TuringMachine.right()
                 TuringMachine.printTape()
                 continue
 
-        elif len(i) == 2:
-            if i[0].upper() == "WRITE":
-                TuringMachine.write(i[1])
+        elif len(code[index]) == 2:
+            if code[index][0].upper() == "WRITE":
+                TuringMachine.write(code[index][1])
                 TuringMachine.printTape()
                 continue
 
-            elif i[0].upper() == "GOTO":
-                executeLabel(instructions,i[1],TuringMachine)
+            elif code[index][0].upper() == "GOTO":
+                executeLabel(instructions,code[index][1],TuringMachine)
                 return
 
-        elif len(i) == 4:
+        elif len(code[index]) == 4:
             cmp = TuringMachine.read()
-            if i[1] == cmp:
-                executeLabel(instructions,i[3],TuringMachine)
+            if code[index][1] == cmp:
+                executeLabel(instructions,code[index][3],TuringMachine)
                 return
             else:
                 continue
